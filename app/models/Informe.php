@@ -32,5 +32,4 @@ class Informe extends Eloquent
     {
         return $this->belongsTo('FormaPago', 'FORMAPAGO', 'id'); # TODO: recordar cambiar nombre
     }
-
 }
