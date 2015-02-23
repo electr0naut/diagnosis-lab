@@ -6,7 +6,7 @@ class Muestra extends Eloquent
     
     public function informe()
     {
-        return $query->belongsTo('Informe','INFORME','id');
+        return $this->belongsTo('Informe','INFORME','id');
     }
     
     #TODO: Comprobar conexion entre Muestra y Diagnóstico

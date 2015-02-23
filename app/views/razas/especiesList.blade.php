@@ -1,16 +1,11 @@
-@extends('layouts.especies') @section('main')
-<h1>Insert Especie</h1> {{ Form::open(array('route' => 'especies.store')) }}
-<ul>
-    <li>
-        {{ Form::label('NOMBRE', 'Name:') }} {{ Form::text('NOMBRE') }} {{ Form::submit('insert') }}
-    </li>
-</ul>
-{{ Form::close() }} @if ($errors->any())
-<ul>
-    {{ implode('', $errors->all('
-    <li class="error">:message</ li>')) }}
-</ul>
-@endif @stop @section('show') @if ($especies->count())
+@extends('layouts.list') @section('main') 
+
+
+
+@stop @section('show') 
+
+@if ($especiesList->count())
+
 <table class="table table-striped table-bordered">
 
     <thead>
@@ -21,7 +16,7 @@
     </thead>
 
     <tbody>
-        @foreach ($especies as $especie)
+        @foreach ($especiesList as $especie)
         <tr>
             <td> {{$especie->id}}</td>
             <td> {{$especie->NOMBRE}}</td>
@@ -33,5 +28,11 @@
     </tbody>
     <!--                       <a href="{{ action("EspeciesController@create") }}">link</a>-->
 </table>
-        {{$especies->links()}}
+
 @else No hay especies @endif @stop
+
+
+
+
+
+@stop

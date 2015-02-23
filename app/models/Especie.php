@@ -12,6 +12,6 @@ class Especie extends Eloquent
     
     public function razas()
     {
-        return $query->hasMany('Raza', 'ESPECIE', 'id');
+        return $this->hasMany('Raza', 'ESPECIE', 'id');
     }
 }

@@ -12,32 +12,19 @@
 */
 
 Route::resource('especies', 'EspeciesController');
-#Route::get('/especies', 'EspeciesController@index');
-#Route::post('/especies', array('as' => 'especies.store', 'uses' => 'EspeciesController@store'));
-#Route::put('/especies/{id}', array('as' => 'especies.update', 'uses' => 'EspeciesController@update'));
+Route::resource('razas', 'RazasController');
+Route::resource('contactos', 'ContactosController');
+Route::resource('entidades', 'EntidadesController');
+Route::resource('diagnosticos', 'DiagnosticosController');
+Route::resource('muestras', 'MuestrasController');
+Route::resource('informes', 'InformesController');
+Route::resource('usuarios', 'UsuariosController');
+Route::resource('tejidos', 'TejidosController');
+Route::resource('formapago', 'FormaPagoController');
 
-#Route::get('/especies/new', array('as' => 'especies', 'uses' => 'EspeciesController@create'));
-#Route::get('/especies/{id}/edit', array('as' => 'especies.edit', 'uses' => 'EspeciesController@edit'));
-#Route::get('/especies/{id}/show', array('as' => 'especies.show', 'uses' => 'EspeciesController@show'));
+Route::get('especies/razas/{id}', array('as' => 'razas.especiesList', 'uses' => 'RazasController@especiesList'));
 
-#Route::post('/especies/{id}/store', array('as' => 'especies.store', 'uses' => 'EspeciesController@store'));
-
-#Route::get('/especies/destroy', array('as' => 'especies.destroy', 'uses' => 'EspeciesController@destroy'));
-#Route::post('/especies/store', array('as' => 'especies.store', 'uses' => 'EspeciesController@store'));
-
-
-#Route::post('/especies/{id}', array('as' => 'especies.update', 'uses' => 'EspeciesController@update'));
-
-//
-//Route::get('/especies/{params}', 'TestingController@determineAction');
-
-
-//Route::get('/', function()
-//{
-//    return View::make('index');
-//});
-//{
-//    #$queryData = Informe::ultimasEntradas()->get();
-//	#return View::make('index')->with('data', $queryData);
-//    return View::make('index');
-//});
+Route::get('/', function()
+{
+	return View::make('base');
+});

@@ -9,7 +9,7 @@ class EspeciesController extends \BaseController {
 	 */
 	public function index()
 	{
-        $especies = Especie::all();
+        $especies = Especie::paginate(5);
         return View::make('especies.index', compact('especies'));
 	}
 
@@ -21,19 +21,8 @@ class EspeciesController extends \BaseController {
 	 */
 	public function create()
 	{
-		// do something
-//        $input = Input::all();
-//        if ($validation->passes())
-//        {
-//            Especie::create($input);
-//            return Redirect::route('especies.index');
-//        }
         $especies = Especie::all();
         return View::make('especies.index', compact('especies'));        
-
-//            ->withInput()
-//            ->withErrors($validation)
-//            ->with('message', 'There were validation errors.');
 	}
 
 
@@ -48,10 +37,17 @@ class EspeciesController extends \BaseController {
         $validation = Validator::make($input, Especie::$rules);        
         if ($validation->passes())
         {
-            Especie::create($input);
-            return Redirect::route('especies');
+        	$nombre = Input::only('NOMBRE');
+        	if (!Especie::where('NOMBRE', '=', $nombre)->first()){
+	            Especie::create($input);
+	            return Redirect::route('especies.index');        		
+        	}
+        	else {
+				return Redirect::route('especies.index')
+	            ->with('message', 'Trying to add an existing race');
+        	}
         }
-        return Redirect::route('especies')
+        return Redirect::route('especies.index')
             ->withInput()
             ->withErrors($validation)
             ->with('message', 'There were validation errors.');
@@ -82,7 +78,7 @@ class EspeciesController extends \BaseController {
 		$especie = Especie::find($id);
         if (is_null($especie))
         {
-            return Redirect::route('especies');
+            return Redirect::route('especies.index');
         }
         return View::make('especies.edit', compact('especie'));
 	}
@@ -119,7 +115,8 @@ class EspeciesController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
-		//
+		Especie::find($id)->delete();
+		return Redirect::route('especies.index');
 	}
 
 

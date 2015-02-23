@@ -1,0 +1,1 @@
+@include('base')@yield('main') @yield('show')

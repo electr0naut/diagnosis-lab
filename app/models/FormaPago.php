@@ -2,10 +2,11 @@
 
 class FormaPago extends Eloquent
 {
-    protected $table = 'forma_pago.contactos';
-    
-    public function creador()
+    protected $table = 'veterinaria.forma_pago';
+    protected $guarded = array('id');
+
+    public function padre()
     {
-        return $query->belongsTo('Usuario', 'PADRE', 'id');
+        return $query->hasOne('FormaPago', 'PADRE', 'id');
     }
 }
